@@ -3,6 +3,7 @@ rgbtest - LCD Dead Pixel Test
 
 https://github.com/chipmunk-sm/rgbtest
 
+https://launchpad.net/rgbtest
 
 F1 - Help on/off
 
