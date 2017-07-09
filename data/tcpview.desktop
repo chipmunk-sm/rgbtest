@@ -1,0 +1,18 @@
+[Desktop Entry]
+Categories=KDE;GNOME;Utility;
+Exec=rgbtest
+GenericName[en_US]=LCD Dead Pixel Test
+GenericName=LCD Dead Pixel Test
+Icon=/usr/share/rgbtest/rgbtest
+MimeType=
+Name[en_US]=rgbtest
+Name=rgbtest
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

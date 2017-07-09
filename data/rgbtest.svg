@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="64"
+   id="svg3352"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 64 64"
+   sodipodi:docname="rgbtest.svg">
+  <title
+     id="title8127">rgbtest - LCD Dead Pixel Test</title>
+  <defs
+     id="defs3354">
+    <pattern
+       inkscape:stockid="Stripes 1:1"
+       id="Strips1_1"
+       patternTransform="translate(0,0) scale(10,10)"
+       height="1"
+       width="2"
+       patternUnits="userSpaceOnUse"
+       inkscape:collect="always">
+      <rect
+         id="rect8803"
+         height="2"
+         width="1"
+         y="-0.5"
+         x="0"
+         style="fill:black;stroke:none" />
+    </pattern>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter9518"
+       x="-0.0075576658"
+       width="1.0151153"
+       y="-0.019871066"
+       height="1.0397421">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.24235659"
+         id="feGaussianBlur9520" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.5"
+     inkscape:cx="23.896768"
+     inkscape:cy="14.397144"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="999"
+     inkscape:window-x="0"
+     inkscape:window-y="44"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3357">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>rgbtest - LCD Dead Pixel Test</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Copyright (C) 2017 chipmunk-sm &lt;dannico@linuxmail.org&gt;</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <rect
+       style="fill:#00ff00;fill-opacity:1"
+       id="rect8098"
+       width="32.81818"
+       height="33.81818"
+       x="-0.090909116"
+       y="0.1818181" />
+    <rect
+       style="fill:#0000ff;fill-opacity:1"
+       id="rect8100"
+       width="30.818184"
+       height="33.818184"
+       x="32.909088"
+       y="0.090908825"
+       ry="0" />
+    <rect
+       style="fill:#ff0000;fill-opacity:1"
+       id="rect8102"
+       width="31.947699"
+       height="29.850328"
+       x="0.084448345"
+       y="34.139591"
+       ry="0" />
+    <rect
+       style="fill:#69686a;fill-opacity:1"
+       id="rect8104"
+       width="31.454544"
+       height="30.090912"
+       x="32.545456"
+       y="33.818184" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:38.66126633px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.0999999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3.0999999;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter9518)"
+       x="-0.29138866"
+       y="41.075752"
+       id="text8070"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.75940475,0.00125642,-0.00301626,1.0236858,-0.07746036,13.381039)"><tspan
+         sodipodi:role="line"
+         id="tspan8072"
+         x="-0.29138866"
+         y="41.075752"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.0999999;stroke-miterlimit:3.0999999;stroke-dasharray:none;stroke-opacity:1">RGB</tspan></text>
+  </g>
+</svg>

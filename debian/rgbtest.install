@@ -1,0 +1,3 @@
+rgbtest usr/bin
+data/rgbtest.desktop  usr/share/applications
+data/rgbtest.svg      usr/share/rgbtest
