@@ -346,10 +346,10 @@ void MainWindow::UpdateWindowBackground()
     if(m_gradient)
     {
 
-        double x1;
-        double y1;
-        double x2;
-        double y2;
+        double x1 = 0.0;
+        double y1 = 0.0;
+        double x2 = 0.0;
+        double y2 = 1.0;
 
         switch (m_direction)
         {
