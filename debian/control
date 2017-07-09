@@ -11,4 +11,4 @@ Vcs-Bzr: https://code.launchpad.net/~chipmunk.sm/rgbtest/master
 Package: rgbtest
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Graphical network connections viewer for Linux
+Description: LCD Dead Pixel Test
