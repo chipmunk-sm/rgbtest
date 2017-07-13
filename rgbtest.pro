@@ -34,7 +34,14 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     README.md \
-    LICENSE
+    LICENSE \
+    debian/source/format \
+    debian/compat \
+    debian/control \
+    debian/copyright \
+    debian/rgbtest.install \
+    debian/changelog \
+    debian/rules
 
 RESOURCES += \
     rgbtest.qrc
