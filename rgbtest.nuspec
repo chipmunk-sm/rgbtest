@@ -19,6 +19,7 @@
     </metadata>
     <files>
       <file src="release\rgbtest.exe" target="release" />
+      <file src="data\rgbtest.svg.png" target="release" />
     </files>
 </package>
 
