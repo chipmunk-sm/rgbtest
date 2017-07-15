@@ -8,4 +8,5 @@ build_script:
   - mingw32-make
   
 nuget:
+  account_feed: true
   project_feed: true
