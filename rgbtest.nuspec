@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>rgbtest</id>
+        <version>$version$</version>
+        <title>rgbtest LCD Monitor Dead Pixel Test</title>
+        <description>rgbtest LCD Monitor Dead Pixel Test for Windows and Linux</description>
+        <tags>rgbtest lcd monitor dead pixel test color</tags>
+        <copyright>Copyright (C) 2017 chipmunk-sm dannico@linuxmail.org</copyright>
+
+        <authors>chipmunk-sm dannico@linuxmail.org</authors>
+        <owners>https://github.com/chipmunk-sm/rgbtest</owners>
+
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <licenseUrl>https://github.com/chipmunk-sm/rgbtest/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/chipmunk-sm/rgbtest</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/chipmunk-sm/rgbtest/master/data/rgbtest.svg.png</iconUrl>
+
+    </metadata>
+    <files>
+      <file src="build\Release\rgbtest.exe" target="release" />
+    </files>
+</package>
+
+
