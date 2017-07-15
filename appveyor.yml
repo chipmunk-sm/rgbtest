@@ -7,3 +7,5 @@ build_script:
   - qmake rgbtest.pro
   - mingw32-make
   
+nuget:
+  project_feed: true
