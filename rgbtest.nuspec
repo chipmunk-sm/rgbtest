@@ -18,7 +18,7 @@
 
     </metadata>
     <files>
-      <file src="build\Release\rgbtest.exe" target="release" />
+      <file src="release\rgbtest.exe" target="release" />
     </files>
 </package>
 
