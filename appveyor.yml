@@ -1,0 +1,7 @@
+install:
+  - set QTDIR=C:\Qt\5.9\mingw53_32
+  - set MINGWDIR=C:\Qt\Tools\mingw530_32
+  - set PATH=%PATH%;%QTDIR%\bin;%MINGWDIR%\bin;
+build_script:
+  - qmake rgbtest.pro
+  - mingw32-make
