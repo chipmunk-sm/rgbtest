@@ -7,14 +7,17 @@ build_script:
   - qmake rgbtest.pro
   - mingw32-make
 
-build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  
-after_build:
-  - nuget pack rgbtest.nuspec -Verbosity Detailed -Version %APPVEYOR_BUILD_VERSION%
-  
-artifacts:
-- path: '**\*.nupkg'
-  name: rgbtest
+
+#nuget test off
+
+#build:
+#  publish_nuget: true
+#  publish_nuget_symbols: true
+#  
+#after_build:
+#  - nuget pack rgbtest.nuspec -Verbosity Detailed -Version %APPVEYOR_BUILD_VERSION%
+#  
+#artifacts:
+#- path: '**\*.nupkg'
+#  name: rgbtest
 
