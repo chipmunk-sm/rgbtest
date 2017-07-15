@@ -8,7 +8,7 @@ build_script:
   - mingw32-make
   
 artifacts:
-- path: release\*.nupkg
+- path: '**\*.nupkg'
   name: rgbtest
 
 
