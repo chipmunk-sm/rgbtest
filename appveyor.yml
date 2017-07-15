@@ -12,7 +12,7 @@ build:
   publish_nuget_symbols: true
   
 after_build:
-  - nuget pack rgbtest.nuspec -Verbosity Detailed -Version %APPVEYOR_BUILD_VERSION% -Symbols
+  - nuget pack rgbtest.nuspec -Verbosity Detailed -Version %APPVEYOR_BUILD_VERSION%
   
 artifacts:
 - path: '**\*.nupkg'
