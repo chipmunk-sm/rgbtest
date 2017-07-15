@@ -5,10 +5,6 @@ Ubuntu:
 
 https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
 
-Wingows: 
-
-https://www.nuget.org
-
 
 Main window
 
