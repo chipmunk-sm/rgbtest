@@ -6,7 +6,17 @@ install:
 build_script:
   - qmake rgbtest.pro
   - mingw32-make
+  
+after_build:
+  - 7z a rgbtest.zip %APPVEYOR_BUILD_FOLDER%\release\rgbtest.exe
 
+artifacts:
+- path: rgbtest.zip
+  name: rgbtest
+
+
+#after_build:
+#  - 
 
 #nuget test off
 
