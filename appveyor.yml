@@ -11,11 +11,11 @@ after_build:
   - windeployqt release\rgbtest.exe --dir rgbtestRelease
   - cp data\rgbtest.svg.png rgbtestRelease
   - cp release\rgbtest.exe rgbtestRelease
-  - 7z a rgbtest.zip %APPVEYOR_BUILD_FOLDER%\rgbtestRelease\*
+  - 7z a rgbtest.%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\rgbtestRelease\*
 
 artifacts:
-- path: rgbtest.zip
-  name: rgbtest
+- path: rgbtest.%APPVEYOR_BUILD_VERSION%.zip
+  name: rgbtest.%APPVEYOR_BUILD_VERSION%
 
 
 #after_build:
