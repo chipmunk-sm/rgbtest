@@ -17,6 +17,8 @@ artifacts:
 - path: rgbtest.%APPVEYOR_BUILD_VERSION%.zip
   name: rgbtest.%APPVEYOR_BUILD_VERSION%
 
+- path: release\rgbtest.exe
+  name: rgbtest.exe.%APPVEYOR_BUILD_VERSION%
 
 #after_build:
 #  - 
