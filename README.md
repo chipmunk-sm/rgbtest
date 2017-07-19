@@ -1,5 +1,5 @@
 # rgbtest
-rgbtest - LCD Dead Pixel Test
+rgbtest - LCD Monitor Dead Pixel Test
 
 Ubuntu: 
 
