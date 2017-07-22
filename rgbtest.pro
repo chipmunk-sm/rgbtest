@@ -45,3 +45,8 @@ DISTFILES += \
 
 RESOURCES += \
     rgbtest.qrc
+
+win32 {
+  RC_FILE     += rgbtest.rc
+  OTHER_FILES += rgbtest.rc
+}

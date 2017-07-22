@@ -1,2 +1,9 @@
 /rgbtest.pro.user
 /build/*
+/ui_mainwindow.h
+/Makefile.Release
+/Makefile.Debug
+/Makefile
+/.qmake.stash
+/release
+/debug

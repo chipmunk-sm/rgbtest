@@ -1,0 +1,47 @@
+#include <winuser.h>
+#include <winnt.h>
+
+#include <ver.h>
+
+#define stringify(X) #X
+#define quote(X)  stringify(X)
+
+#if FVER4 > 65535
+#error FVER4 overflow! Max 65535 for use in FILEVERSION
+#endif
+
+LANGUAGE 25,1
+
+STRINGTABLE LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+
+BEGIN
+        1 "rgbtest""LCD Monitor Dead Pixel Test""\0"
+END
+
+1 VERSIONINFO
+        //VALUE "ProductVersion",     quote(FVER1.FVER2.FVER3.FVER4)
+
+        FILEVERSION    FVER1,FVER2,FVER3,FVER4
+        PRODUCTVERSION FVER1,FVER2,FVER3,FVER4
+        FILEOS         0x00000000
+        FILETYPE       0x00000001
+
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "ProductVersion",     quote(FVER1.FVER2.FVER3.FVER4)
+            VALUE "ProductName",        "rgbtest\0"
+            VALUE "FileDescription",    "rgbtest LCD Monitor Dead Pixel Test\0"
+            VALUE "LegalCopyright",     "Copyright (C) 2017 chipmunk-sm dannico@linuxmail.org\0"
+            VALUE "Info",               "https://github.com/chipmunk-sm/rgbtest\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+
+END
+
