@@ -30,19 +30,3 @@ deploy:
 - provider: GitHub
   auth_token:
     secure: t8KwiAN0pBg7QNaea4NCDavSO+NpzwADgO/Ir2md9HL1612P2WPV0xNLTaAj3xLM
-
-#  force_update: true
-
-#nuget test off
-
-#build:
-#  publish_nuget: true
-#  publish_nuget_symbols: true
-#  
-#after_build:
-#  - nuget pack rgbtest.nuspec -Verbosity Detailed -Version %APPVEYOR_BUILD_VERSION%
-#  
-#artifacts:
-#- path: '**\*.nupkg'
-#  name: rgbtest
-
