@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_direction(GradientDirection0),
     m_BackgroundColor(BackgroundColor_white),
     m_gradient(false),
+    m_Brightness(255),
     m_AutoswitchColor(false)
 {
 
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     "<html>"
     "<head/>"
     "<body>"
-    "Copyright (C) 2017 chipmunk-sm <a href='mailto:dannico@linuxmail.org'>dannico@linuxmail.org</a><br>"
+    //"Copyright (C) 2017 chipmunk-sm <a href='mailto:dannico@linuxmail.org'>dannico@linuxmail.org</a><br>"
     "<a href='https://github.com/chipmunk-sm/rgbtest'>https://github.com/chipmunk-sm/rgbtest</a><br>"
     "<br>"
     "<b>F1</b> - Help <b>On</b>/<n>Off</n><br>"
@@ -47,10 +48,13 @@ MainWindow::MainWindow(QWidget *parent) :
     "<b>F3</b> – <n>Gradient</n> ↔ <b>Solid</b><br>"
     "<b>F4</b> – Gradient direction (<b>0</b>-<n>45</n>-<n>90</n>-<n>135</n>-<n>180</n>-<n>225</n>-<n>270</n>-<n>315</n>)<br>"
     "<b>F5</b> – <n>Fullscreen</n> ↔ <b>Normal</b><br>"
-//    "<b>F6</b> – <n>Autoswitch color</n><br>"
+    //"<b>F6</b> – <n>Autoswitch color</n><br>"
+    "<b>'+'</b> or <b>'-'</b> – <n>Brightnes</n> <b>255</b> (0-255)"
     "</body>"
     "</html>"
     ));
+
+    m_ui->helpLabel->adjustSize();
 
     installEventFilter(this);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenu(const QPoint &)));
@@ -80,7 +84,6 @@ void MainWindow::RunMenuAction(menuAction menuaction)
     {
         case menuAction_F1_Help:
         {
-            m_ui->helpLabel->setVisible(!m_ui->helpLabel->isVisible());
             setHelpOnOff(m_ui->helpLabel->isVisible());
         }
         break;
@@ -126,12 +129,38 @@ void MainWindow::RunMenuAction(menuAction menuaction)
         {
             setWindowState(windowState() == Qt::WindowFullScreen ? Qt::WindowNoState : Qt::WindowFullScreen);
             setHelpFullScreen(windowState() == Qt::WindowFullScreen);
+            UpdateWindowBackground();
         }
         break;
         case menuAction_F6_Autoswitch_color:
         {
             m_AutoswitchColor = !m_AutoswitchColor;
             setHelpAutoswitchColor(m_AutoswitchColor);
+        }
+        break;
+        case menuAction_ADD_Brightness:
+        {
+            auto tmpBrightness = m_Brightness;
+            if(m_Brightness > 254)
+                m_Brightness = 0;
+            else
+                m_Brightness++;
+
+            setHelpBrightness(m_Brightness,tmpBrightness);
+            UpdateWindowBackground();
+        }
+        break;
+        case menuAction_SUB_Brightness:
+        {
+
+            auto tmpBrightness = m_Brightness;
+            if(m_Brightness < 1)
+                m_Brightness = 255;
+            else
+                m_Brightness--;
+
+            setHelpBrightness(m_Brightness,tmpBrightness);
+            UpdateWindowBackground();
         }
         break;
     }
@@ -159,8 +188,14 @@ void MainWindow::onCustomContextMenu(const QPoint &point)
     AddMenuAction(&menu, menuAction_F5_Switch_fullscreen_normal,
                   QObject::tr("F5 – Fullscreen ↔ Normal"));
 
-//    AddMenuAction(&menu, menuAction_F6_Autoswitch_color,
-//                  QObject::tr("F6 – Autoswitch color"));
+    //    AddMenuAction(&menu, menuAction_F6_Autoswitch_color,
+    //                  QObject::tr("F6 – Autoswitch color"));
+
+    AddMenuAction(&menu, menuAction_ADD_Brightness,
+                  QObject::tr("+ Brightness"));
+
+    AddMenuAction(&menu, menuAction_SUB_Brightness,
+                  QObject::tr("- Brightness"));
 
     auto ret = menu.exec(QCursor::pos());
     if(ret == nullptr)
@@ -190,6 +225,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             case Qt::Key_F4: RunMenuAction(menuAction_F4_Gradient_direction); break;
             case Qt::Key_F5: RunMenuAction(menuAction_F5_Switch_fullscreen_normal); break;
             case Qt::Key_F6: RunMenuAction(menuAction_F6_Autoswitch_color); break;
+            case Qt::Key_Plus:  RunMenuAction(menuAction_ADD_Brightness); break;
+            case Qt::Key_Minus: RunMenuAction(menuAction_SUB_Brightness); break;
         }
     }
     return QObject::eventFilter(obj, event);
@@ -209,6 +246,9 @@ void MainWindow::setHelpOnOff(bool helpOn)
         textVal.replace(tr("<n>Off</n>"), tr("<b>Off</b>"), Qt::CaseInsensitive);
 
     m_ui->helpLabel->setText(textVal);
+
+    m_ui->helpLabel->setVisible(!helpOn);
+
 }
 
 void MainWindow::setHelpActiveColor(BackgroundColor activeColor)
@@ -296,9 +336,25 @@ void MainWindow::setHelpFullScreen(bool fullScreen)
     m_ui->helpLabel->setText(textVal);
 }
 
+void MainWindow::setHelpBrightness(int brightnessNew, int brightnessOld)
+{
+    //'+' or '-' – Brightness
+    auto textVal = m_ui->helpLabel->text();
+
+    auto strBr1 = tr("<n>Brightnes</n> <b>");
+    auto strBr2 = tr("</b>");
+
+    auto strOld = strBr1 + QString::number(brightnessOld) + strBr2;
+    auto strNew = strBr1 + QString::number(brightnessNew) + strBr2;
+
+    textVal.replace(strOld, strNew, Qt::CaseInsensitive);
+
+    m_ui->helpLabel->setText(textVal);
+}
+
 void MainWindow::setHelpAutoswitchColor(bool autoswitchEnable)
 {
-    //F6 – Autoswitch color
+    //F7 – Autoswitch color
     auto textVal = m_ui->helpLabel->text();
     if(autoswitchEnable)
         textVal.replace(tr("<n>Autoswitch color</n>"), tr("<b>Autoswitch color</b>"), Qt::CaseInsensitive);
@@ -312,35 +368,34 @@ void MainWindow::UpdateWindowBackground()
 {
 
     QString styleWidowBackgroundColor;
-    QString styleLabelForegroundColor;
+    QString styleLabelForegroundColor = "white";
 
     if(m_BackgroundColor == BackgroundColor_white)
     {
-        styleWidowBackgroundColor = "white";
-        if(m_gradient)
-            styleLabelForegroundColor = "white";
-        else
+        styleWidowBackgroundColor = tr("rgb(") +
+                QString::number(m_Brightness) + tr(",") +
+                QString::number(m_Brightness) + tr(",") +
+                QString::number(m_Brightness) + tr(")");//
+
+        if(m_Brightness > 160)
             styleLabelForegroundColor = "black";
     }
     else if(m_BackgroundColor == BackgroundColor_red)
     {
-        styleWidowBackgroundColor = "red";
-        styleLabelForegroundColor = "white";
+        styleWidowBackgroundColor = tr("rgb(") + QString::number(m_Brightness) + tr(",0,0)");//"red"
     }
     else if(m_BackgroundColor == BackgroundColor_green)
     {
-        styleWidowBackgroundColor = "green";
-        styleLabelForegroundColor = "white";
+        styleWidowBackgroundColor = tr("rgb(0,") + QString::number(m_Brightness) + tr(",0)");//"green"
     }
     else if(m_BackgroundColor == BackgroundColor_blue)
     {
-        styleWidowBackgroundColor = "blue";
-        styleLabelForegroundColor = "white";
+        styleWidowBackgroundColor = tr("rgb(0,0,") + QString::number(m_Brightness) + tr(")");//"blue"
     }
     else if(m_BackgroundColor == BackgroundColor_black)
     {
         styleWidowBackgroundColor = "black";
-        styleLabelForegroundColor = "white";
+
     }
 
     if(m_gradient)
@@ -410,14 +465,14 @@ void MainWindow::UpdateWindowBackground()
                       "y2: " + QString::number(y2) + ","
                       "stop: 0 " + styleWidowBackgroundColor + ", "
                       "stop: 1 black);}"
-                      "QLabel {color: '" + styleLabelForegroundColor + "';}"
+                      "QLabel {color: " + styleLabelForegroundColor + ";background:transparent;}"
                       "QMenu {background: Window;}");
 
     }
     else
     {
-        setStyleSheet("* {background: '" + styleWidowBackgroundColor + "';} "
-                 "QLabel {color: '" + styleLabelForegroundColor + "';}"
+        setStyleSheet("* {background: " + styleWidowBackgroundColor + ";} "
+                 "QLabel {color: " + styleLabelForegroundColor + ";background:transparent;}"
                   "QMenu {background: Window;}");
     }
 

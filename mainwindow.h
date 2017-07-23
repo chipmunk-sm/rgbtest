@@ -48,7 +48,9 @@ private:
         menuAction_F3_Gradient_Solid,
         menuAction_F4_Gradient_direction,
         menuAction_F5_Switch_fullscreen_normal,
-        menuAction_F6_Autoswitch_color
+        menuAction_F6_Autoswitch_color,
+        menuAction_ADD_Brightness,
+        menuAction_SUB_Brightness
     }menuAction;
 
     typedef enum{
@@ -74,6 +76,7 @@ private:
     GradientDirection m_direction;
     BackgroundColor m_BackgroundColor;
     bool m_gradient;
+    int m_Brightness;
     bool m_AutoswitchColor;
 
     void AddMenuAction(QMenu *mainMenu, QVariant actionId, QString actionName);
@@ -85,6 +88,7 @@ private:
     void setHelpActiveGradient(bool enableGradient);
     void setHelpActiveDirection(GradientDirection gradientdirection);
     void setHelpFullScreen(bool fullScreen);
+    void setHelpBrightness(int brightnessNew, int brightnessOld);
     void setHelpAutoswitchColor(bool autoswitchEnable);
     void UpdateWindowBackground();
 };
