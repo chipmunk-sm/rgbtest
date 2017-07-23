@@ -27,7 +27,7 @@ artifacts:
 deploy:
 - provider: GitHub
   auth_token:
-    secure: ZcqgecX8/iJWcT+x20a2c07z0B5VMzIY00txsS6qtSvuHNKnd8SZxYSuK/vBQVHR80Tk6QObF73PtJRv7tv1AtGBOYBg7yMbK1GzowXu6Zc=
+    secure: t8KwiAN0pBg7QNaea4NCDavSO+NpzwADgO/Ir2md9HL1612P2WPV0xNLTaAj3xLM
 
 #nuget test off
 
