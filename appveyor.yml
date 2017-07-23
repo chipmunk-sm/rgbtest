@@ -28,5 +28,6 @@ artifacts:
 
 deploy:
 - provider: GitHub
+  skip_tags: true
   auth_token:
     secure: t8KwiAN0pBg7QNaea4NCDavSO+NpzwADgO/Ir2md9HL1612P2WPV0xNLTaAj3xLM
