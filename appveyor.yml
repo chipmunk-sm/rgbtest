@@ -1,4 +1,6 @@
 version: 1.0.{build}
+skip_tags: true
+deploy: off
 
 install:
   - set QTDIR=C:\Qt\5.9\mingw53_32
@@ -28,7 +30,6 @@ artifacts:
 
 deploy:
 - provider: GitHub
-  skip_tags: true
   artifact: rgbtest.%APPVEYOR_BUILD_VERSION%.zip
   auth_token:
     secure: t8KwiAN0pBg7QNaea4NCDavSO+NpzwADgO/Ir2md9HL1612P2WPV0xNLTaAj3xLM
