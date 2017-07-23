@@ -4,7 +4,8 @@ install:
   - set PATH=%PATH%;%QTDIR%\bin;%MINGWDIR%\bin;
 
 before_build:
-  - cmd: 'ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h'
+  - ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h
+  - type ver.h
   
 build_script:
   - qmake rgbtest.pro
