@@ -24,8 +24,10 @@ artifacts:
 - path: release\rgbtest.exe
   name: rgbtest.exe.%APPVEYOR_BUILD_VERSION%
 
-#after_build:
-#  - 
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: ZcqgecX8/iJWcT+x20a2c07z0B5VMzIY00txsS6qtSvuHNKnd8SZxYSuK/vBQVHR80Tk6QObF73PtJRv7tv1AtGBOYBg7yMbK1GzowXu6Zc=
 
 #nuget test off
 
