@@ -2,6 +2,9 @@ install:
   - set QTDIR=C:\Qt\5.9\mingw53_32
   - set MINGWDIR=C:\Qt\Tools\mingw530_32
   - set PATH=%PATH%;%QTDIR%\bin;%MINGWDIR%\bin;
+
+before_build:
+  - cmd: 'ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h'
   
 build_script:
   - qmake rgbtest.pro
