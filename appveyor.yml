@@ -4,7 +4,7 @@ install:
   - set PATH=%PATH%;%QTDIR%\bin;%MINGWDIR%\bin;
 
 before_build:
-  - ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h
+  - cmd: 'ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h'
   - type ver.h
   
 build_script:
