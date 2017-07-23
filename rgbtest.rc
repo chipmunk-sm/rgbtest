@@ -6,6 +6,22 @@
 #define stringify(X) #X
 #define quote(X)  stringify(X)
 
+#ifndef FVER1
+#define FVER1 1
+#endif //FVER1
+
+#ifndef FVER2
+#define FVER2 0
+#endif //FVER2
+
+#ifndef FVER3
+#define FVER3 0
+#endif //FVER3
+
+#ifndef FVER4
+#define FVER4 0
+#endif //FVER4
+
 #if FVER4 > 65535
 #error FVER4 overflow! Max 65535 for use in FILEVERSION
 #endif
@@ -19,8 +35,6 @@ BEGIN
 END
 
 1 VERSIONINFO
-        //VALUE "ProductVersion",     quote(FVER1.FVER2.FVER3.FVER4)
-
         FILEVERSION    FVER1,FVER2,FVER3,FVER4
         PRODUCTVERSION FVER1,FVER2,FVER3,FVER4
         FILEOS         0x00000000
