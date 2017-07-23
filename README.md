@@ -7,6 +7,9 @@ https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
 Windows:
 https://github.com/chipmunk-sm/rgbtest/releases
 
+Windows (Project Autobuilder):
+https://ci.appveyor.com/project/chipmunk-sm/rgbtest/build/artifacts
+
 Main window
 
 ![1](https://user-images.githubusercontent.com/29524958/27997506-026f9792-6502-11e7-8611-149e2d23b53b.png)
