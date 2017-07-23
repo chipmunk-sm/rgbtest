@@ -2,9 +2,10 @@
 rgbtest - LCD Monitor Dead Pixel Test
 
 Ubuntu: 
-
 https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
 
+Windows:
+https://github.com/chipmunk-sm/rgbtest/releases
 
 Main window
 
