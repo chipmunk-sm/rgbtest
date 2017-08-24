@@ -1,12 +1,13 @@
 # rgbtest
+
 rgbtest - LCD Monitor Dead Pixel Test
 
-Windows (Project Autobuilder):
+Windows (Project Autobuilder):  
 https://ci.appveyor.com/project/chipmunk-sm/rgbtest/build/artifacts
 
 To get the last release version, please use the PPA:
 
-Artful, Zesty, Xenial
+Artful, Zesty, Xenial  
 https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
 
 ```
