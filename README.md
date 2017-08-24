@@ -1,12 +1,19 @@
 # rgbtest
 rgbtest - LCD Monitor Dead Pixel Test
 
-Ubuntu: 
-https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
-
 Windows (Project Autobuilder):
 https://ci.appveyor.com/project/chipmunk-sm/rgbtest/build/artifacts
 
+To get the last release version, please use the PPA:
+
+Artful, Zesty, Xenial
+https://launchpad.net/~chipmunk.sm/+archive/ubuntu/ppa
+
+```
+$ sudo add-apt-repository ppa:chipmunk.sm/ppa
+$ sudo apt-get update
+$ sudo apt-get install rgbtest
+```
 
 ![rgbtest](https://user-images.githubusercontent.com/29524958/28501999-5427f6e8-6ff1-11e7-8744-5bb5b783d32e.png)
 
