@@ -1,5 +1,7 @@
 # rgbtest
 
+[![Build Status](https://travis-ci.org/chipmunk-sm/rgbtest.svg?branch=master)](https://travis-ci.org/chipmunk-sm/rgbtest)
+
 rgbtest - LCD Monitor Dead Pixel Test
 
 Windows (Project Autobuilder):  
