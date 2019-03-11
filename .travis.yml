@@ -1,12 +1,26 @@
 language: cpp
-compiler: gcc
-dist: trusty
 
-before_install:
- - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
- - sudo apt-get update -qq
- - sudo apt-get install qtbase5-dev  
+dist: xenial
+
+matrix:
+  include:
+#GCC 8
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
+install:
+ - sudo apt-get install  qt5-qmake qtbase5-dev
+ - eval "${MATRIX_EVAL}"
 
 script:
- - qmake -qt=qt5
- - make
+ - qmake  -qt=qt5
+ - make -j4
+ 
