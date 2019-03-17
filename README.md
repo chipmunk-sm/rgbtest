@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/chipmunk-sm/rgbtest.svg?branch=master)](https://travis-ci.org/chipmunk-sm/rgbtest)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/r9j3r27bagosjf79?svg=true)](https://ci.appveyor.com/project/chipmunk-sm/rgbtest)
+
+
 rgbtest - LCD Monitor Dead Pixel Test
 
 Windows (Project Autobuilder):  
