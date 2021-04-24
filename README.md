@@ -10,11 +10,11 @@ Master branch status
 
 
 
-
 rgbtest - LCD Monitor Dead Pixel Test
 
-Windows (Project Autobuilder):  
-https://ci.appveyor.com/project/chipmunk-sm/rgbtest/build/artifacts
+Download for Windows/Linux: 
+
+https://github.com/chipmunk-sm/rgbtest/releases
 
 Linux:
 To get the last release version, please use the PPA:
