@@ -1,34 +1,95 @@
-version: 1.0.{build}
-skip_tags: true
+version: 0.0.0.{build}.{branch}
+
+environment:
+  matrix:
+  
+    - job_name: "Win10.x64"
+      QTDIR: C:\Qt\5.15.2\msvc2019_64
+      BUILD_PLATFORMID: "x64"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+
+    - job_name: "Win10.x86"
+      QTDIR: C:\Qt\5.15.2\msvc2019
+      BUILD_PLATFORMID: "x86"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+
+    - job_name: "Win8.x64"
+      QTDIR: C:\Qt\5.13.2\msvc2015_64
+      BUILD_PLATFORMID: "x64"
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        
+      ##Ubuntu2004 - Ubuntu 20.04 (Focal Fossa)
+    - job_name: "ubuntu.20.04"
+      APPVEYOR_BUILD_WORKER_IMAGE: ubuntu2004
+        
+      ##Ubuntu1804 - Ubuntu 18.04 (Bionic Beaver)
+    - job_name: "Ubuntu.18.04"
+      APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1804
+        
+      #Ubuntu1604 - Ubuntu 16.04 (Xenial Xerus)
+    - job_name: "Ubuntu.16.04"
+      APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu1604
+      #APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCipGa5kfhMsi6vdKEUOpqfbyoRFFafGJaWFeYXCCZ5SfbvBgE9iWSYXVVtNxWkSkB/HNzPRjsXF7w9UVrfXHHtGo2qk+qypM+WvkTAaU6F5pNIrIkjAUd1T3oX+LFBLqZ8AQoym/8s5J2mhddct8VVjT4jjpzN3WSfU+3t08qSIYb/8BRzJiqWd+0Po+82+tlj3vVxSq7h9mjvT7ioTmSbEYxcjqKoY/j058REmvZH/4iH9Zq+tfJK4EazQRbO+BUn+4A2/QkEz5c/gdBuY4u59TeIAVndq0YUuuY2DTgLAsA1BnGMCq1J04XabhJDZ8ApfUFIay1EqTWMAGg3ZeYV
+
+
+init:
+    - cmd: set PATH=%QTDIR%\bin;%PATH%
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" if "%BUILD_PLATFORMID%"=="x64" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" if "%BUILD_PLATFORMID%"=="x86" call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" if "%BUILD_PLATFORMID%"=="x64" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" if "%BUILD_PLATFORMID%"=="x86" call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" if "%BUILD_PLATFORMID%"=="x64" call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+    - cmd: if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" if "%BUILD_PLATFORMID%"=="x86" call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars32.bat"
 
 install:
-  - set QTDIR=C:\Qt\5.9\mingw53_32
-  - set MINGWDIR=C:\Qt\Tools\mingw530_32
-  - set PATH=%PATH%;%QTDIR%\bin;%MINGWDIR%\bin;
-
-before_build:
-  - cmd: 'ECHO #define FVER4 %APPVEYOR_BUILD_NUMBER% > ver.h'
-  - type ver.h
+    - sh: sudo apt-get update
+    - sh: sudo apt-get install -y --no-install-recommends qtbase5-dev qttools5-dev-tools
+    #- sh: sudo apt-get install -y --no-install-recommends git-build-recipe git-buildpackage
+    - sh: sudo apt-get install -y --no-install-recommends debhelper devscripts fakeroot dh-make
   
 build_script:
-  - qmake rgbtest.pro
-  - mingw32-make
-  
+    - ps: ./version.ps1
+    - cmd: qmake -v
+    - cmd: qmake rgbtest.pro
+    - cmd: nmake
+    #- sh: make
+    - sh: distribution=$(awk -F= '$1 == "VERSION_CODENAME" {gsub(/"/, "", $2); print $2}' /etc/os-release);
+    - sh: version=$(awk -F= '$1 == "VERSION_ID" {gsub(/"/, "", $2); print $2}' /etc/os-release);
+    - sh: distr="$distribution.$version"    
+    - sh: echo $distr
+    #- sh: git-build-recipe --allow-fallback-to-native --distribution $distribution --append-version $version $APPVEYOR_BUILD_FOLDER/tmp/recipe.txt $APPVEYOR_BUILD_FOLDER ;
+    - sh: debuild --version ;
+    - sh: debuild --help ;
+    - sh: if [[ "$version" == "16.04" ]]; then debuild binary ; else debuild -- binary ; fi
+    - sh: ls -Rl ../
+    - sh: mkdir -p $APPVEYOR_BUILD_FOLDER/Artifacts_deb
+    - sh: mv $APPVEYOR_BUILD_FOLDER/../*.deb $APPVEYOR_BUILD_FOLDER/Artifacts_deb/
+    - sh: mv $APPVEYOR_BUILD_FOLDER/../*.ddeb $APPVEYOR_BUILD_FOLDER/Artifacts_deb/ 2>/dev/null || true
+    - sh: pushd $PWD
+    - sh: cd $APPVEYOR_BUILD_FOLDER/Artifacts_deb
+    - sh: for file in `find -name "*.*deb"`; do mv "$file" "${file/_amd64/_amd64.$distr}" ; done
+    - sh: popd
+
 after_build:
-  - windeployqt release\rgbtest.exe --dir rgbtestRelease
-  - cp data\rgbtest.svg.png rgbtestRelease
-  - cp release\rgbtest.exe rgbtestRelease
-  - 7z a rgbtest.%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\rgbtestRelease\*
+    - cmd: windeployqt release\rgbtest.exe --dir %APPVEYOR_BUILD_FOLDER%\deployfolder
+    - cmd: cp release\rgbtest.exe %APPVEYOR_BUILD_FOLDER%\deployfolder
+    - cmd: cp data\rgbtest.svg.png %APPVEYOR_BUILD_FOLDER%\deployfolder
+    - cmd: cp releaseNote.txt %APPVEYOR_BUILD_FOLDER%\deployfolder
+    - cmd: 7z a rgbtest_%APPVEYOR_BUILD_VERSION%.%APPVEYOR_JOB_NAME%.zip %APPVEYOR_BUILD_FOLDER%\deployfolder\*
 
 artifacts:
-- path: rgbtest.%APPVEYOR_BUILD_VERSION%.zip
-  name: rgbtest.%APPVEYOR_BUILD_VERSION%
-
-#- path: release\rgbtest.exe
-#  name: rgbtest.exe.%APPVEYOR_BUILD_VERSION%
-
-#deploy:
-#- provider: GitHub
-#  artifact: rgbtest.%APPVEYOR_BUILD_VERSION%.zip
-#  auth_token:
-#    secure: t8KwiAN0pBg7QNaea4NCDavSO+NpzwADgO/Ir2md9HL1612P2WPV0xNLTaAj3xLM
+    - path: '*.zip'
+    - path: 'Artifacts_deb/*deb'
+  
+deploy:
+    - provider: GitHub
+      description: 'New release of rgbtest'
+      auth_token:
+          secure: Wzt04IzSwnytdau8R6dpRXet/npbyur3S02EA35OQBGRKFZyJuUjh95OLFzDrX3N
+      on:
+          APPVEYOR_REPO_TAG: true
+      
+#on_finish:
+  #- sh: export APPVEYOR_SSH_BLOCK=true
+  #- sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
+ 
