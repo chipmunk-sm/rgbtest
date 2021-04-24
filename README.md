@@ -1,8 +1,14 @@
 # rgbtest
 
-[![Build Status](https://travis-ci.org/chipmunk-sm/rgbtest.svg?branch=master)](https://travis-ci.org/chipmunk-sm/rgbtest)
+Projects status
 
 [![Build status](https://ci.appveyor.com/api/projects/status/r9j3r27bagosjf79?svg=true)](https://ci.appveyor.com/project/chipmunk-sm/rgbtest)
+
+Master branch status
+
+[![Build status](https://ci.appveyor.com/api/projects/status/r9j3r27bagosjf79/branch/master?svg=true)](https://ci.appveyor.com/project/chipmunk-sm/rgbtest/branch/master)
+
+
 
 
 rgbtest - LCD Monitor Dead Pixel Test

@@ -7,3 +7,5 @@
 /.qmake.stash
 /release
 /debug
+/tmp
+/releaseNote.txt

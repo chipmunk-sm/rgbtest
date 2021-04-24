@@ -48,7 +48,7 @@ BEGIN
             VALUE "ProductVersion",     quote(FVER1.FVER2.FVER3.FVER4)
             VALUE "ProductName",        "rgbtest\0"
             VALUE "FileDescription",    "rgbtest LCD Monitor Dead Pixel Test\0"
-            VALUE "LegalCopyright",     "Copyright (C) 2017 chipmunk-sm dannico@linuxmail.org\0"
+            VALUE "LegalCopyright",     "Copyright (C) 2021 chipmunk-sm dannico@linuxmail.org\0"
             VALUE "Info",               "https://github.com/chipmunk-sm/rgbtest\0"
         END
     END

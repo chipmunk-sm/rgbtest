@@ -41,7 +41,10 @@ DISTFILES += \
     debian/copyright \
     debian/rgbtest.install \
     debian/changelog \
-    debian/rules
+    debian/rules \
+    data/rgbtest.desktop \
+    data/rgbtest.svg.png \
+    data/rgbtest.svg
 
 RESOURCES += \
     rgbtest.qrc
