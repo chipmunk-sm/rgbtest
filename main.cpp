@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     QCoreApplication::setOrganizationDomain("");
-    QCoreApplication::setOrganizationName("danizt");
+    QCoreApplication::setOrganizationName("chipmunk-sm");
     QCoreApplication::setApplicationName("rgbtest");
     QCoreApplication::setApplicationVersion("1.0 beta");
 
