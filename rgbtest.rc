@@ -1,5 +1,4 @@
-#include <winuser.h>
-#include <winnt.h>
+#include <windows.h>
 
 #include <ver.h>
 
